@@ -1,0 +1,10 @@
+venv
+db.sqlite3
+main/migrations/**
+!main/migrations/__init__.py
+media/
+main/__pycache__/**
+config/__pycache__/**
+env
+table
+lesson_table
