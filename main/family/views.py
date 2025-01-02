@@ -6,15 +6,17 @@ from main import models as md
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter
 
 class CustomPagination(PageNumberPagination):
     page_size = 2
     page_size_query_param = 'page_size'
     max_page_size = 5
 # ===============================================
-class Family(ListAPIView):
-    queryset = md.Family.objects.all().order_by('id')
+class FamilyViewSet(ModelViewSet):
+    queryset = md.Family.objects.all()
     serializer_class = ser.FamilySer
-    pagination_class = CustomPagination
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['fullname']
-    filterset_fields = '__all__'
+    filterset_fields = ['teacher']

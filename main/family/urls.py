@@ -1,6 +1,8 @@
 from django.urls import path
-from .import views
+from . import views
+from rest_framework.routers import SimpleRouter
 
-urlpatterns = [
-    path('',views.Family.as_view(), name='family_url'),
-]
+router = SimpleRouter()
+router.register('', views.FamilyViewSet)
+
+urlpatterns = router.urls

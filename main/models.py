@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser,User
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.utils.timezone import now
+
 
 class School(models.Model):  # Maktab
     fullname = models.CharField(
@@ -200,7 +200,7 @@ class Family(models.Model): #ota ona
     class Meta:
         ordering = ['-id']
 # ===============================================
-class AuditLog(models.Model):  #Xatolik
+class AuditLog(models.Model):  #Malumot Olish
     action_type = models.CharField(max_length=50)
     action_description = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)

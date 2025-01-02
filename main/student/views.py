@@ -5,13 +5,14 @@ from .import serializers as ser
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
 
 class CustomPagination(PageNumberPagination):
     page_size = 2
     page_size_query_param = 'page_size'
     max_page_size = 5
 # ===============================================
-class StudentView(ListAPIView):
+class StudentViewSet(ModelViewSet):
     queryset = md.Student.objects.all().order_by('id')
     serializer_class = ser.StudentSer
     pagination_class = CustomPagination

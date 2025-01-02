@@ -1,7 +1,10 @@
 from django.urls import path
 from .import views
+from rest_framework.routers import SimpleRouter
 
-urlpatterns = [
-    path('',views.WorkView.as_view(), name='work_url'),
-    path('status/',views.WorkStatus.as_view(), name='work_status_url'),
-]
+
+router = SimpleRouter()
+
+router.register('', views.WorkViewSet, basename='work')
+
+urlpatterns = router.urls

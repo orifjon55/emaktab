@@ -5,13 +5,14 @@ from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
 
 class CustomPagination(PageNumberPagination):
     page_size = 2
     page_size_query_param = 'page_size'
     max_page_size = 5
 # ===============================================
-class PrincipalView(ListAPIView):
+class PrincipalViewSet(ModelViewSet):
     queryset = md.Principal.objects.all().order_by('id')
     serializer_class = ser.PrincipalSer
     pagination_class = CustomPagination
